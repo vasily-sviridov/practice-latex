@@ -1,0 +1,145 @@
+\documentclass[a4paper, 12pt]{extarticle} % Here we specify the paper size, font size and document type
+
+\usepackage{cmap} % Make pdf searchable
+\usepackage[T2A]{fontenc} % 
+\usepackage[utf8]{inputenc} % encoding on source document
+\usepackage[english, russian]{babel} % Multi language supporting
+\usepackage{graphicx} % This package allows working with images
+\usepackage{mathtools} % This package need to working with math
+\usepackage{amsfonts}
+
+\usepackage{indentfirst}
+
+\begin{document}
+
+\section*{Предел числовой последовательности}
+Определение. Число A $\in \mathbb{R}$ называется пределом числовой последовательности $\{x_n\}$, если для любой окресности V(A) точки A существует такой номер N (выбираемый в зависимости от V(A)), что все члены последовательности, номера которых больше N, содержатся в указанной окрестности точки A.
+
+
+\begin{equation*}
+    (\lim_{n\to\infty} x_{n} = A) := \forall V(A) \exists N \in \mathbb{N} \forall n > N (x_n \in V(A))
+\end{equation*}
+
+и соответственно
+
+\begin{equation*}
+    (\lim_{n \to \infty} x_{n} = A) := \forall \varepsilon > 0 \ \exists N \in \mathbb{N} \ \forall n > N \ (|x_n - A| < \varepsilon).
+\end{equation*}
+
+\clearpage
+
+\section*{Предел функции}
+Определение. Итак, число A называется пределом функции $f: E \to \mathbb{R}$ при x, стемящемся по множеству E к точке a (предельной для E), если для любой окрестности точки A найдется проколотая окрестность точки a в множестве E, образ которой при отображении $f : E -> \mathbb{R}$ содержится в заданной окрестности точки A.
+
+\begin{equation*}
+    (\lim_{E \ni x \to a} f(x) = A) := \forall V_\mathbb{R}(A) \ \exists \dot{U}_E(a) \ (f(\dot{U}_E(a)) \subset V_\mathbb{R}(A))
+\end{equation*}
+
+\clearpage
+\section*{Замечательные пределы}
+
+Первый замечательный предел:
+
+\begin{equation*}
+    \lim_{n \to 0} \frac{\sin x}{x} = 1
+\end{equation*}
+
+Второй замечательный предел:
+
+\begin{equation*}
+    \lim _{{x\to \infty }}\left(1+{\frac  {1}{x}}\right)^{x}=e.
+\end{equation*}
+
+\clearpage
+
+
+\section*{Разложение фукнции в ряд Тейлора}
+
+\begin{equation}
+    P_n(x_0; x) = P_n(x) = f(x_0) + \frac{f'(x_0)}{1!}(x - x_0) + ... + \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n
+\end{equation}
+
+Определение. Алгебраический полином, заданный соотношением (1), называется полиномом Тейлора\footnote{Б. Тейлор (1685 - 1731) -- английский математик} порядка $n$ функции $f(x)$ в точке $x_0$.
+
+Нас будет интересовать величина
+\begin{equation}
+    f(x) - P_n(x_0; x) = r_n(x_0; x)
+\end{equation}
+уклонение полинома $P_n(x)$ от функции $f(x)$, называется часто остатком, точнее, $n$-м остатком или $n$-м остаточным членом формулы Тейлора:
+
+\begin{equation}
+    f(x) = f(x_0) + \frac{f'(x_0)}{1!} (x - x_0) + ... + \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n + r_n (x_0; x)
+\end{equation}
+
+Также давайте разложим наиболее часто используемые функции по формуле (3):
+\begin{equation*}
+    e^x = 1 + \frac{1}{1!}x + \frac{1}{2!}x^2 + \frac{1}{3!}x^3 + ... + \frac{1}{n!}x^n + O(x^n + 1)
+\end{equation*}
+\begin{equation*}
+    \cos x = 1 - \frac{1}{2!}x^2 + \frac{1}{4!}x^4 - \frac{1}{6!}x^6 + ... + \frac{(-1)^k}{2k!}x^{2k} + O(x^{2k+2})
+\end{equation*}
+
+\begin{equation*}
+    \sin x = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 - \frac{1}{7!}x^7 + ... + \frac{(-1)^k}{(2k + 1)!}x^{2k + 1} + O(x^{2k+3})
+\end{equation*}
+
+\begin{equation*}
+    \ln(1 + x) = x - \frac{1}{2}x^2 + \frac{1}{3}x^3 - \frac{1}{4}x^4 + ... + \frac{(-1)^{n - 1}}{n}x^n + O(x^{n + 1})
+\end{equation*}
+
+\clearpage
+
+\section*{Интеграл Римана}
+
+Определение. Функция $f$ называется интегрируемой по Риману на отрезке [a, b], если для нее существует указанный в пункте (5) предел интегральных сумм при $\lambda (P) \to 0$ (т.е. если для нее определен интеграл Римана).
+
+Множество всех функций, интегрируемых по Риману на отрезке [a, b], будет обозначаться через $\Re [a, b]$.
+
+\begin{equation*}
+    \int^b_a f(x) dx := \lim_{\lambda(P) \to 0} \sum^n_{i = 1} f(\xi_i) \Delta x_i
+\end{equation*}
+
+\clearpage
+
+\section*{Формула Тейлора}
+
+Теорема. Если функция $f: U(x) \to \mathbb{R}$ определена и принадлежит классу $C^{(n)} \ (U(x); \mathbb{R})$ в окрестности $U(x) \subset \mathbb{R}^m$, а отрезок [x, x + h] полностью содержится в $U(x)$, то имеет место равенство
+
+\begin{eqnarray*}
+    f(x^1 + h^1, ..., x^m+h^m) - f(x^1, ...,x^m) = \sum^{n - 1}{k = 1} \frac{1}{k!} (h^1 \delta_1 + ... + h^m \delta_m)^k f(x) + r_{n - 1}(x; h),
+\end{eqnarray*}
+где
+\begin{equation*}
+    r_{n-1}(x;h) = \int^1_0 \frac{(1-t)^{n - 1}}{(n - 1)!} (h^1 \delta_1 + ... + h^m \delta_m)^n f(x + th) dt
+\end{equation*}
+
+\clearpage
+\section*{Интеграл по гладкой поверхности}
+Определение. (интеграла от k-формы $\omega$ по заданной картой $\varphi: I \to S$ гладкой k-мерной поверхности).
+
+\begin{equation}
+    \int_S \omega := \lim_{\lambda (P) \to 0} \sum_i \omega (x_i)(\varepsilon_1, ..., \varepsilon_k) = \lim_{\lambda(P) \to 0} \sum_i (\varphi * \omega)(\tau_i)(\tau_1, ..., \tau_k).
+\end{equation}
+
+Если применить это определние к k-форме $f(t) dt^1 \land ...\land dt^k$ на I (когда $\varphi$ -- тождественное отображение), то очевидно, получим, что:=
+
+\begin{equation}
+    \int_I f(t) dt^1 \land ... \land dt^k = \int_I f(t) dt^1 ... \ dt^k.
+\end{equation}
+
+Таким образом, из (1) следует, что
+\begin{equation*}
+    \int_{S = \varphi(I)} \omega = \int_I \varphi \omega,
+\end{equation*}
+
+а последний интеграл, как видно из равенства (2), сводится к обычному кратному интегралу от соответствующей форме $\varphi * \omega$ функции $f$ на промежутке $I$.
+
+\clearpage
+\section*{Формула Стокса в $\mathbb{R}^3$}
+Утверждение. Пусть S -- ориентированная кусочно гладкая компатная двумерная поверхность с краем $\delta S$, лежаща в области $G \subset \mathbb{R^3}$, в которой задана гладкая 1-форма $\omega = P\ dx + Q\ dy + R\ dz$. Тогда имеет место соотношение
+\begin{eqnarray*}
+    \int_{\delta S} P\ dx + Q\ dy + R\ dz = \iint_S \left( \frac{\delta R}{\delta y} - \frac{\delta Q}{\delta z} \right) \ dy \land dz + \\ + \left(\frac{\delta P}{\delta z} - \frac{\delta R}{\delta x}\right) dz \land dx + \left(\frac{\delta Q}{\delta x} - \frac{\delta P}{\delta y}\right) dx \land dy,
+\end{eqnarray*}
+где ориентация края $\delta S$ берется согласованной с ориентаией поверхности S.
+
+\end{document}
