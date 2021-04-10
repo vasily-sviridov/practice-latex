@@ -7,8 +7,15 @@
 \usepackage{graphicx} % This package allows working with images
 \usepackage{mathtools} % This package need to working with math
 \usepackage{amsfonts}
+\usepackage{amsmath, autonum} % This package is needed in order to set numbers only for those formulas that are referenced in the text
 
 \usepackage{indentfirst}
+\usepackage{pgfplots}
+
+\newcommand{\retainlabel}[1]{\label{#1}\sbox0{\ref{#1}}}
+
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 
 \begin{document}
 
@@ -16,39 +23,39 @@
 Определение. Число A $\in \mathbb{R}$ называется пределом числовой последовательности $\{x_n\}$, если для любой окресности V(A) точки A существует такой номер N (выбираемый в зависимости от V(A)), что все члены последовательности, номера которых больше N, содержатся в указанной окрестности точки A.
 
 
-\begin{equation*}
+\begin{equation}
     (\lim_{n\to\infty} x_{n} = A) := \forall V(A) \exists N \in \mathbb{N} \forall n > N (x_n \in V(A))
-\end{equation*}
+\end{equation}
 
 и соответственно
 
-\begin{equation*}
+\begin{equation}
     (\lim_{n \to \infty} x_{n} = A) := \forall \varepsilon > 0 \ \exists N \in \mathbb{N} \ \forall n > N \ (|x_n - A| < \varepsilon).
-\end{equation*}
+\end{equation}
 
 \clearpage
 
 \section*{Предел функции}
-Определение. Итак, число A называется пределом функции $f: E \to \mathbb{R}$ при x, стемящемся по множеству E к точке a (предельной для E), если для любой окрестности точки A найдется проколотая окрестность точки a в множестве E, образ которой при отображении $f : E -> \mathbb{R}$ содержится в заданной окрестности точки A.
+Определение. Итак, число A называется пределом функции $f: E \to \mathbb{R}$ при $x$, стемящемся по множеству $E$ к точке $a$ (предельной для $E$), если для любой окрестности точки $A$ найдется проколотая окрестность точки $a$ в множестве $E$, образ которой при отображении $f : E -> \mathbb{R}$ содержится в заданной окрестности точки $A$.
 
-\begin{equation*}
+\begin{equation}
     (\lim_{E \ni x \to a} f(x) = A) := \forall V_\mathbb{R}(A) \ \exists \dot{U}_E(a) \ (f(\dot{U}_E(a)) \subset V_\mathbb{R}(A))
-\end{equation*}
+\end{equation}
 
 \clearpage
 \section*{Замечательные пределы}
 
 Первый замечательный предел:
 
-\begin{equation*}
+\begin{equation}
     \lim_{n \to 0} \frac{\sin x}{x} = 1
-\end{equation*}
+\end{equation}
 
 Второй замечательный предел:
 
-\begin{equation*}
+\begin{equation}
     \lim _{{x\to \infty }}\left(1+{\frac  {1}{x}}\right)^{x}=e.
-\end{equation*}
+\end{equation}
 
 \clearpage
 
@@ -57,9 +64,10 @@
 
 \begin{equation}
     P_n(x_0; x) = P_n(x) = f(x_0) + \frac{f'(x_0)}{1!}(x - x_0) + ... + \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n
+    \label{eq:dec_to_Teylor}
 \end{equation}
 
-Определение. Алгебраический полином, заданный соотношением (1), называется полиномом Тейлора\footnote{Б. Тейлор (1685 - 1731) -- английский математик} порядка $n$ функции $f(x)$ в точке $x_0$.
+Определение. Алгебраический полином, заданный соотношением (\ref{eq:dec_to_Teylor}), называется полиномом Тейлора\footnote{Б. Тейлор (1685 - 1731) -- английский математик} порядка $n$ функции $f(x)$ в точке $x_0$.
 
 Нас будет интересовать величина
 \begin{equation}
@@ -69,70 +77,74 @@
 
 \begin{equation}
     f(x) = f(x_0) + \frac{f'(x_0)}{1!} (x - x_0) + ... + \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n + r_n (x_0; x)
+    \label{eq:for_of_Teylor}
 \end{equation}
 
-Также давайте разложим наиболее часто используемые функции по формуле (3):
-\begin{equation*}
+Также давайте разложим наиболее часто используемые функции по формуле (\ref{eq:for_of_Teylor}):
+\begin{equation}
     e^x = 1 + \frac{1}{1!}x + \frac{1}{2!}x^2 + \frac{1}{3!}x^3 + ... + \frac{1}{n!}x^n + O(x^n + 1)
-\end{equation*}
-\begin{equation*}
+\end{equation}
+\begin{equation}
     \cos x = 1 - \frac{1}{2!}x^2 + \frac{1}{4!}x^4 - \frac{1}{6!}x^6 + ... + \frac{(-1)^k}{2k!}x^{2k} + O(x^{2k+2})
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
     \sin x = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 - \frac{1}{7!}x^7 + ... + \frac{(-1)^k}{(2k + 1)!}x^{2k + 1} + O(x^{2k+3})
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
     \ln(1 + x) = x - \frac{1}{2}x^2 + \frac{1}{3}x^3 - \frac{1}{4}x^4 + ... + \frac{(-1)^{n - 1}}{n}x^n + O(x^{n + 1})
-\end{equation*}
+\end{equation}
 
 \clearpage
 
 \section*{Интеграл Римана}
 
-Определение. Функция $f$ называется интегрируемой по Риману на отрезке [a, b], если для нее существует указанный в пункте (5) предел интегральных сумм при $\lambda (P) \to 0$ (т.е. если для нее определен интеграл Римана).
+Определение. Функция $f$ называется интегрируемой по Риману на отрезке $[a, b]$, если для нее существует указанный в пункте (\ref{eq:int_Riman}) предел интегральных сумм при $\lambda (P) \to 0$ (т.е. если для нее определен интеграл Римана).
 
-Множество всех функций, интегрируемых по Риману на отрезке [a, b], будет обозначаться через $\Re [a, b]$.
+Множество всех функций, интегрируемых по Риману на отрезке $[a, b]$, будет обозначаться через $\Re [a, b]$.
 
-\begin{equation*}
+\[
     \int^b_a f(x) dx := \lim_{\lambda(P) \to 0} \sum^n_{i = 1} f(\xi_i) \Delta x_i
-\end{equation*}
+    \label{eq:int_Riman}
+\]
 
 \clearpage
 
 \section*{Формула Тейлора}
 
-Теорема. Если функция $f: U(x) \to \mathbb{R}$ определена и принадлежит классу $C^{(n)} \ (U(x); \mathbb{R})$ в окрестности $U(x) \subset \mathbb{R}^m$, а отрезок [x, x + h] полностью содержится в $U(x)$, то имеет место равенство
+Теорема. Если функция $f: U(x) \to \mathbb{R}$ определена и принадлежит классу $C^{(n)} \ (U(x); \mathbb{R})$ в окрестности $U(x) \subset \mathbb{R}^m$, а отрезок $[x, x + h]$ полностью содержится в $U(x)$, то имеет место равенство
 
 \begin{eqnarray*}
-    f(x^1 + h^1, ..., x^m+h^m) - f(x^1, ...,x^m) = \sum^{n - 1}{k = 1} \frac{1}{k!} (h^1 \delta_1 + ... + h^m \delta_m)^k f(x) + r_{n - 1}(x; h),
+    f(x^1 + h^1, ..., x^m+h^m) - f(x^1, ...,x^m) = \\ = \sum^{n - 1}{k = 1} \frac{1}{k!} (h^1 \delta_1 + ... + h^m \delta_m)^k f(x) + r_{n - 1}(x; h),
 \end{eqnarray*}
 где
-\begin{equation*}
+\begin{equation}
     r_{n-1}(x;h) = \int^1_0 \frac{(1-t)^{n - 1}}{(n - 1)!} (h^1 \delta_1 + ... + h^m \delta_m)^n f(x + th) dt
-\end{equation*}
+\end{equation}
 
 \clearpage
 \section*{Интеграл по гладкой поверхности}
-Определение. (интеграла от k-формы $\omega$ по заданной картой $\varphi: I \to S$ гладкой k-мерной поверхности).
+Определение. (интеграла от $k$-формы $\omega$ по заданной картой $\varphi: I \to S$ гладкой $k$-мерной поверхности).
 
-\begin{equation}
-    \int_S \omega := \lim_{\lambda (P) \to 0} \sum_i \omega (x_i)(\varepsilon_1, ..., \varepsilon_k) = \lim_{\lambda(P) \to 0} \sum_i (\varphi * \omega)(\tau_i)(\tau_1, ..., \tau_k).
-\end{equation}
+\[
+    \int_S \omega := \lim_{\lambda (P) \to 0} \sum_i \omega (x_i)(\varepsilon_1, ..., \varepsilon_k) = \lim_{\lambda \to 01} \sum_i (\varphi * \omega)(\tau_i)(\tau_1, ..., \tau_k).
+    \label{eq:int_by_smooth_surface_one}
+\]
 
-Если применить это определние к k-форме $f(t) dt^1 \land ...\land dt^k$ на I (когда $\varphi$ -- тождественное отображение), то очевидно, получим, что:=
+Если применить это определение к $k$-форме $f(t) dt^1 \land ...\land dt^k$ на $I$ (когда $\varphi$ -- тождественное отображение), то очевидно, получим, что:
 
-\begin{equation}
+\[
     \int_I f(t) dt^1 \land ... \land dt^k = \int_I f(t) dt^1 ... \ dt^k.
+    \label{eq:int_by_smooth_surface_two}
+\]
+
+Таким образом, из (\ref{eq:int_by_smooth_surface_one}) следует, что
+\begin{equation}
+    \int_{S = \varphi(I)} \omega = \int_I \varphi * \omega,
 \end{equation}
 
-Таким образом, из (1) следует, что
-\begin{equation*}
-    \int_{S = \varphi(I)} \omega = \int_I \varphi \omega,
-\end{equation*}
-
-а последний интеграл, как видно из равенства (2), сводится к обычному кратному интегралу от соответствующей форме $\varphi * \omega$ функции $f$ на промежутке $I$.
+а последний интеграл, как видно из равенства (\ref{eq:int_by_smooth_surface_two}), сводится к обычному кратному интегралу от соответствующей форме $\varphi * \omega$ функции $f$ на промежутке $I$.
 
 \clearpage
 \section*{Формула Стокса в $\mathbb{R}^3$}
@@ -142,4 +154,92 @@
 \end{eqnarray*}
 где ориентация края $\delta S$ берется согласованной с ориентаией поверхности S.
 
+\clearpage
+
+\section*{Алгебра форм}
+Пусть $X$ - линейное пространство, а $F^k : X^k \to \mathbb{R}$ -- вещественнозначная $k$-форма на $X$. Если $e_1, ..., e_n$ -- базис в $X$, а $x_1 = x^{i_1} e_{i_1}, ..., x_k = x^{i_k} e_{i_k}$ -- разложение векторов $x_1, ..., x_k \in X$ по этому базису, то в силу линейности $F_k$ по каждому аргументу
+
+\begin{eqnarray}
+    F^k(x_1,...,x_k) = F^k(x^i_1 e_{i_1}, ..., x^i_k e_{i_k}) = \\ = F^k(e_{i_1}, ..., e_{i_k}) x^{i_1} \cdot  ... \cdot x^{i_k} = a_{i_1 ... i_k} x^{i_1} \cdot x^{i_k}.
+\end{eqnarray}
+
+\clearpage
+\section*{График функции $f(x) = \sin \frac{1}{x} $}
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+                axis lines=middle,
+                ticklabel style={fill=white},
+                width=15cm, height=8cm,
+                xmin=-1.2,xmax=1.2,
+                ymin=-1.5,ymax=1.5,,
+                xlabel=$x$,ylabel=$y$,
+            ]
+            \addplot[blue,samples=50,domain=-1:-0.2,smooth] {sin(1/\x r)};
+            \addplot[blue,samples=1000,domain=-0.2:-0.02]   {sin(1/\x r)};
+            \addplot[blue,samples=1000,domain=0.02: 0.20]   {sin(1/\x r)};
+            \addplot[blue,samples=50,domain= 0.2: 1,smooth] {sin(1/\x r)};
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\clearpage
+\section*{Аксиоматика и некоторые общие свойства множества действительных чисел}
+
+Определение. Множество $\mathbb{R}$ называется множеством действительных (вещественных) чисел, а его элементы -- действительными (вещественными) числами, если выполнен следующий комплекс условий, называемый аксиоматикой вещественных чисел:
+
+\begin{enumerate}
+    \item [(I)] Аксиомы сложения. Определено отображение (операции сложения)
+          $$ + : \mathbb{R} \times \mathbb{R} \to \mathbb{R} $$
+          сопоставляющее каждой упорядоченной паре $(x, y)$ элементов $x, y$ из $\mathbb{R}$ некоторый элемент $x+y \in \mathbb{R}$, называемый суммой $x$ и $y$. При этом выполнены следующие условия:
+          \begin{enumerate}
+              \item [$1_+.$] Существует нейтральный элемент 0 (называемый в случае сложения нулем):
+                    $$ \exists 0 \ \forall x: x + 0 = x. $$
+              \item [$2_+.$] Для любого элемента $x \in \mathbb{R}$ имеется элемент $-x \in \mathbb{R}$, называемый противоположным к $x$, такой, что
+                    $$ x + (-x) = (-x) + x = 0. $$
+              \item [$3_+.$] Операция + ассоциативна, т.е. для любых элементов $x, y, z \in \mathbb{R}$ выполнено $$ x + (y + z) = (x + y) + z. $$
+              \item [$4_+.$] Операция + коммутативна, т.е. для любых элементов $x, y \in \mathbb{R}$ выполнено $$ x + y = y + z $$
+          \end{enumerate}
+    \item [(II)] Аксиомы умножения. Определено отражение (операция умножения) $$ \bullet : \mathbb{R} \times \mathbb{R} \to \mathbb{R}, $$ сопоставляющее каждой упорядоченной паре $(x, y)$ элементов $x, y \in \mathbb{R}$ некоторый элемент $x \cdot y \in \mathbb{R}$, называемый произведением $x$ и $y$, причем так, что выполнены следующие условия:
+          \begin{enumerate}
+              \item [$1_\bullet.$] Существует нейтральный элемент $1 \in \mathbb{R} \backslash 0$ (называемый в случае умножения единицей) такой, что $$ \exists 1 \ \forall x: x \cdot 1 = x.$$
+              \item [$2_\bullet.$] Для любого элемента $x \in \mathbb{R} \backslash 0$ имеется элемент $x^-1 \in \mathbb{R}$, называемый обратным, такой, что $$ x \cdot x^-1 = x^-1 \cdot * x = 1.$$
+              \item [$3_\bullet.$] Операция $\bullet$ ассоциативна, т.е. для любых $x, y, z \in \mathbb{R}$ $$ x \cdot (y \cdot z) = (x \cdot y) \cdot z.$$
+              \item [$4_\bullet.$] Операция $\bullet$ коммутативна, т.е. для любых $x, y \in \mathbb{R}$ $$ x \cdot y = y \cdot x.$$
+                    Заметим, что по отношению к операции умножения множество $\mathbb{R} \backslash 0$, как можно проверить, является (мультипликативной) группой.
+          \end{enumerate}
+\end{enumerate}
+
+\clearpage
+
+\section{Умножение матриц}
+Теорема 1. Произведение $\varphi A \varphi B$ двух линейных отображений с матрицами $A$ и $B$ является линейным отображением с матрицей $C = AB$. Другими словами
+\begin{equation}
+    \varphi A \varphi B = \varphi AB.
+    \label{eq:mul_matrix}
+\end{equation}
+Мы можем забыть о линейных отображениях и находить произведение $AB$ двух произвольных матриц $A, B$, имея в виду, однако, что символ $AB$ имеет смысл только в том случае, когда число  столбцов в матрице $A$ совпадает с числом строк в матрице $B$. Именно при этом условии выполняется правило умножения $i-$й строки $A_{(i)}$ на $j-$й столбец $B^{(j)}$, согласно которому
+
+\begin{equation}
+    A_{(i)}B^{(j)} = (a_{i 1}, ..., a_{i s})[b_{1 j}, ..., b_{s j}]
+    \label{eq:mult_matrix}
+\end{equation}
+Следствие. Умножение матриц ассоциативно:
+\begin{equation}
+    A(BC) = (AB)C
+\end{equation}
+Действительно, произведение матриц соответствует произведению линейных отображений (теорема 1 и соотношение \ref{eq:mul_matrix}). К тому же результату можно прийти вычислительным путём, используя непосредственно соотношение (\ref{eq:mult_matrix}). $\Box$
+
+Обратим ещё внимание на так называемые законы дистрибутивности:
+\begin{equation}
+    (A + B)C = AC + BC, ~~~~~ D(A + B) = DA + DB
+    \label{eq:distr_matrix}
+\end{equation}
+где $A, B, C, D$ -- произвольные матрицы размеров соответственно $m \times s, m \times s, s \times n, n \times m.$
+
+Действительно, пологая $A = (a_{ij}), B = (b_{ij}), C = (c_{ij})$, мы получим для любых $i$, $j$ равенство (используя дистрибутивность в $\mathbb{R}$)
+\begin{equation}
+    \sum^n_{k = 1} (a_{ik} + b_{ik})c_{kj} = \sum^n_{k=1} a_{ik} c_{kj} + \sum^n_{k = 1} b_{ik} c_{kj},
+\end{equation}
+левая часть которого дает элемент $g_{ij}$ матрицы $(A + B)C$, а правая -- элементы $h_{ij}$ и $h'_{ij}$ матриц $AC$ и соответственно $BC$. Второй закон дистрибутивности (\ref{eq:distr_matrix}) проверяется совершенно аналогично.
 \end{document}
