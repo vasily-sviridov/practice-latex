@@ -8,7 +8,7 @@
 \usepackage{mathtools} % This package need to working with math
 \usepackage{amsfonts}
 \usepackage{amsmath, autonum} % This package is needed in order to set numbers only for those formulas that are referenced in the text
-
+\usepackage{amssymb}
 \usepackage{indentfirst}
 \usepackage{pgfplots}
 
@@ -289,4 +289,69 @@
 \end{equation}
 
 Определение. Форма $f \in P_m$, остающаяся неподвижной при действии $\widetilde{\Phi_g}$ (т.е. $\widetilde{\Phi_g}f = f \ \forall g \in G$), называется (целым) инвариантом степени $m$ линейной группы $(G, \Phi)$.
+
+\clearpage
+\section*{Начала тензорного исчисления}
+\textbf{1. Понятие то тензорах.} Разумной общности можно достичь, ограничившись лишь полилинейными отображениями некоторого специального вида.
+
+Определение. Пусть $\Re$ -- поле, $V$ -- векторное пространство над $\Re, V^*$ -- сопряженное к $V$ пространство, $p$ и $q$ -- целые числа $\geq 0,$
+\begin{equation}
+    V^p \times (V^*)^q = \underbrace{V \times ... \times V}_{p} \times \underbrace{V^* \times V^*}_{q}
+\end{equation}
+-- декартово произведение $p$ экземпляров пространства $V$ и $q$ экземпляров пространства $V^*$. Всякое $(p + q)$ -- линейное отображение
+\begin{equation}
+    f: V^p \times (V^*)^q \to \Re
+\end{equation}
+называется тензором на $V$ типа $(p, q)$ и валентности (или ранга) $p + q$.
+
+\textbf{2. Произведение тензоров.}Вначале пусть
+\begin{equation}
+    f: V_1 \times ... \times V_r \to \Re ~~~~~ g: W_1 \times ... \times W_s \to \Re
+\end{equation}
+-- произвольные полилинейные формы. Это значит, что $V_i, W_j$ -- никак не связанные друг с другом векторные пространства.
+
+Определение. Под тензорным произведением $f$ и $g$ понимают отображение
+\begin{equation}
+    f \otimes g: V_1 \times ... V_r \times W_1 \times ... \times W_s \to \Re,
+\end{equation}
+определенное формулой
+\begin{equation}
+    (f \otimes g)(v_1, ..., v_r; w_1, ...., w_s) = f(v_1, ..., v_r)g(w_1, ..., w_s).
+\end{equation}
+Существенно подчеркнуть, что переменные $V_i$ независимы от переменных $W_j$.
+
+Резюмируем сказанное:
+\begin{enumerate}
+    \item [$1_\otimes$] операция умножения $\otimes$ определена для тензоров произвольных типов;
+    \item [$2_\otimes$] валентность произведения равна сумме валентностей сомножителей;
+    \item [$3_\otimes$] тензорное произведение ассоциативно и дистрибутивно, но не коммутативно.
+\end{enumerate}
+
+\clearpage
+\section*{Дифференциальное исчисление. Основные теоремы.}
+Теорема. Пусть $f: U(x_0) \to \mathbb{R}$ -- функция класса $C^{(2)}(U(x_0); \mathbb{R})$, определенная в окрестности $U(x_0) \subset \mathbb{R}^m$ точки $x_0 = (x^1_0, ...,x^m_0) \in \mathbb{R}$, и пусть $x_0$ -- критическая точка этой функции $f$.
+
+Если в тейлоровском разложении
+\begin{equation}
+    f(x^1_0+h^1, ..., x_0^m+h^m) = f(x_0^1, ..., x^m_0) + \frac{1}{2!} \sum^m_{i, j = 1} \frac{\delta^2 f}{\delta x^i \delta x^j} (x_0)h^i h^j + o(||h||^2)
+    \label{eq:diff_expr_two}
+\end{equation}
+функции в точке $x_0$ квадратичная форма
+\begin{equation}
+    \sum_{i,j = 1}^m \frac{\delta^2 f}{\delta x^i \delta x^j} (x_0) h^i h^j \equiv \delta_{ij} f(x_0) h^i h^j
+    \label{eq:diff_expr_one}
+\end{equation}
+\begin{enumerate}
+    \item [a)] знакоопределена, то в точке $x_0$ функция имеет локальный экстремум, который является строгим локальным минимумом, если квадратичная форма (\ref{eq:diff_expr_one}) положительно определена, и строгим локальным максимумом, если она отрицательно определена;
+    \item [b)] может принимать значения разных знаков, то в точке $x_0$ функция экстремума не имеет.
+\end{enumerate}
+
+$ \blacktriangleleft $ Пусть $h \neq 0$ и $x_0 + h \in U(x_0)$. Представим соотношение (\ref{eq:diff_expr_two}) в виде
+\begin{equation}
+    f(x_0 + h) - f(x_0) = \frac{1}{2!} ||h||^2 \left[ \sum^m_{i, j = 1} \frac{\delta^2 f}{\delta x^i \delta x^j} (x_0) \frac{h^i}{||h||} \frac{h^j}{||h||} + o(1) \right]
+    \label{eq:diff_expr_three}
+\end{equation}
+где $o(1)$ есть величина, бесконечно малая при $h \to 0$
+
+Из (\ref{eq:diff_expr_three}) видно, что знак разности $f(x_0 + h) - f(x_0)$ полностью определяется знаком величины, стоящей в квадратных скобках. Этой величиной мы теперь и займемся.
 \end{document}
