@@ -24,3 +24,8 @@
 @cflewis
 *.fls
 *.fdb_latexmk
+_minted-main
+*.bib.bak
+*.bcf
+*.pyg
+*.run.xml
