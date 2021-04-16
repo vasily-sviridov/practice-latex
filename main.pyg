@@ -1,0 +1,12 @@
+
+            void example1() {
+                // Конструктор по умолчанию создает экземпляр boost::blank.
+                boost::variant<boost::blank, int, const char*, std::string> var;
+
+                // Метод which() возвращает индекс типа, который в настоящее время содержится в variant
+                assert(var.which() == 0); // boost::blank
+
+                var = "Hello, dear reader";
+                assert(var.which() != 0);
+            }
+

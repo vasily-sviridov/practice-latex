@@ -1,0 +1,24 @@
+% Encoding: UTF-8
+
+@book{zorich_1,
+  author = {Владимир Антонович Зорич},
+  title  = {Математический анализ. Часть I},
+  year   = {2020},
+  isbn   = {978-5-4439-4030-4}
+}
+
+@book{zorich_2,
+  author = {Владимир Антонович Зорич},
+  title  = {Математический анализ. Часть II},
+  year   = {2019},
+  isbn   = {978-5-4439-1305-6}
+}
+
+@book{kostrikin,
+  author = {Владимир Антонович Зорич},
+  title  = {Математический анализ. Часть I},
+  year   = {2020},
+  isbn   = {978-5-4439-4030-4}
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}

@@ -1,4 +1,4 @@
-\documentclass[a4paper, 12pt]{extarticle} % Here we specify the paper size, font size and document type
+\documentclass[a4paper, 12pt]{article} % Here we specify the paper size, font size and document type
 
 \usepackage{cmap} % Make pdf searchable
 \usepackage[T2A]{fontenc} % 
@@ -7,19 +7,24 @@
 \usepackage{graphicx} % This package allows working with images
 \usepackage{mathtools} % This package need to working with math
 \usepackage{amsfonts}
-\usepackage{amsmath, autonum} % This package is needed in order to set numbers only for those formulas that are referenced in the text
+\usepackage{amsmath} % This package is needed in order to set numbers only for those formulas that are referenced in the text
 \usepackage{amssymb}
 \usepackage{indentfirst}
 \usepackage{pgfplots}
+\usepackage{listings}
 
 \newcommand{\retainlabel}[1]{\label{#1}\sbox0{\ref{#1}}}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{lib.bib}
+
 
 \usepackage[left=2cm,right=2cm,
     top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 
 \begin{document}
 
-\section*{Предел числовой последовательности}
+\section*{Предел числовой \cite{zorich}последовательности}
 Определение. Число A $\in \mathbb{R}$ называется пределом числовой последовательности $\{x_n\}$, если для любой окресности V(A) точки A существует такой номер N (выбираемый в зависимости от V(A)), что все члены последовательности, номера которых больше N, содержатся в указанной окрестности точки A.
 
 
@@ -451,4 +456,43 @@ $ \blacktriangleleft $ Пусть $h \neq 0$ и $x_0 + h \in U(x_0)$. Предс
         8. $\ctg x$     & $- \frac{1}{\sin^2 x}$ & $x \neq \pi k, \ \ k \in \mathbb{Z}$                                                                \\ & & \\ \hline
     \end{tabular}
 \end{center}
+
+\clearpage
+
+\section*{Хранение одного из нескольких выбранных типов в контейнере или переменной}
+Объединения (union) C\texttt{++}03 могут содержать только очень простые типы под названием \textbf{простая структура данных (POD)}. Например в C\texttt{++}03 нельзя хранить \texttt{std::string} или \texttt{std::vector} в объединении.
+
+Вы знаете о концепции \textbf{Неограниченных объединений (unrestricted unions)} в C\texttt{++}11? Позвольте мне кратко рассказать вам о них. C\texttt{++}11 ослабляет требования для объединений, но вы должны сами управлять созданием и уничтожением не-POD-типов. Вы должны вызывать конструирование или уничтожение по месту (in-place construction/destruction) и запомнить, какой тип хранится в объединении. Огромный объем работы, не так ли?
+
+Можно ли в C\texttt{++}03 получить переменную, которая ведет себя как неограниченное объединение C\texttt{++} и которая управляет временем жизни объекта, запоминает его тип?
+
+\subsection*{Подготовка...}
+Мы будем работать с библиотекой header-only, которая проста в использовании. Все, что требуется для этого рецепта, - базовые знания C\texttt{++}.
+\subsection*{Как это делается...}
+Позвольте представить вам библиотеку \texttt{Boost.Variant}.
+
+\begin{enumerate}
+    \item Библиотека \texttt{Boost.Variant} может хранить любые типы, указанные во время компиляции. Она также управляет созданием или уничтожением по месту, и ей даже не требуется стандарт C\texttt{++}11:
+          \lstinputlisting[language=C++]{listing/boost_variant/ex1.cpp}
+          Здорово, правда?
+    \item \texttt{Boost.Variant} не имеет пустого состояния, но у нее есть функция \texttt{empty()}, которая бесполезна и всегда возвращает значение \texttt{false}. Если вам нужно представить пустое состояние, просто добавьте простой тип первым шаблонным параметром \texttt{boost::variant}. Если \texttt{Boost.Variant} содержит этот тип, интерпретируйте его как пустое состояние. Вот пример, в котором мы будем использовать тип \texttt{boost:blank} для представления пустого состояния:
+          \lstinputlisting[language=C++]{listing/boost_variant/ex2.cpp}
+    \item Можно получить значение из \texttt{boost::variant}, используя два подхода:
+          \lstinputlisting[language=C++]{listing/boost_variant/ex3.cpp}
+\end{enumerate}
+
+\subsection*{Как это работает...}
+Класс \texttt{boost::variant} содержит массив байтов и хранит значения в этом массиве. Размер массива определяется во время компиляции путем применения функции \texttt{sizeof} и функции для определения выравнивания (alignment) каждого из типов шаблонов. При присваивании или создании класса \texttt{boost::variable} предыдущее значение уничтожается по месту, а новое значение создается поверх массива байтов с использованием оператора placement new.
+
+\subsection*{Дополнительно...}
+\texttt{Boost.Variant} обычно не выделяет память динамически и не требует RTTI. Это чрезвычайно быстрая библиотека, и она широко используется другими библиотеками Boost. Для достижения максимальной производительности убедитесь, что в шаблонном списке типов в первой позиции указан простой тип (POD), \texttt{boost::variant} использует rvalue-ссылки C\texttt{++}11, если они доступны в вашем компиляторе.
+
+Библиотека \texttt{Boost.Variant} является частью стандартна c\texttt{++}17, \texttt{std::variant} имеет некоторые отличия от \texttt{Boost.Variant}
+
+\clearpage
+
+\nocite{*}
+
+\printbibliography
+
 \end{document}
