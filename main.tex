@@ -504,6 +504,62 @@ $ \blacktriangleleft $ Пусть $h \neq 0$ и $x_0 + h \in U(x_0)$. Предс
 
 \clearpage
 
+\section*{Прямоугольная матрица}
+Пусть есть два конечных множества:
+\begin{itemize}
+    \item Номера строк: $M = \{1, 2, ..., m\};$
+    \item номера столбцов $N = \{1, 2, ..., n\}$, где $m, n \in \mathbb{N}$.
+\end{itemize}
+
+Назовём матрицей $A$ размера $m \times n$ (читается $m$ на $n$) ($m$ \textbf{- строк}, $n$ \textbf{- столбцов}) c элементами из некоторого кольца или поля $\mathcal{K}$ отображение вида $A: M \times N \to \mathcal{K}$. Матрица записывается как
+
+\begin{equation}
+    {\textstyle A={\begin{pmatrix}a_{11}&a_{12}&\cdots &a_{1n}\\a_{21}&a_{22}&\cdots &a_{2n}\\\vdots &\vdots &a_{ij}&\vdots \\a_{m1}&a_{m2}&\cdots &a_{mn}\end{pmatrix}},}
+\end{equation}
+где элемент матрицы $a_{ij} = a(i, j)$ находятся на пересечениии $i-$й \textit{строки} и $j-$го \textit{столбца}.
+
+\begin{itemize}
+    \item $i$-я строка матрицы $A(i,)={\begin{pmatrix}a_{{i1}}&a_{{i2}}&\cdots &a_{{in}}\end{pmatrix}};$
+    \item $j-$й столбец матрицы $A(,j)={\begin{pmatrix}a_{1j}\\a_{2j}\\\vdots \\a_{mj}\end{pmatrix}}.$
+\end{itemize}
+
+При этом количество элементов матрицы равно $m \cdot n.$
+\begin{itemize}
+    \item каждую строку матрицы можно интерпретировать как вектор в $n$-мерном координатном пространстве $\mathcal{K}^{n}$;
+    \item каждый столбец матрицы -- как вектор в $m$-мерном координатном пространстве $\mathcal{K}^{m}$.
+\end{itemize}
+
+Сама матрица естественным образом интерпретируется как вектор в пространстве $\mathcal{K}^{mn}$, имеющем размерность $mn$. Это позволяет ввести покомпонентное сложение матриц и умножение матрицы на число (см. ниже); что касается матричного умножения, то оно существенным образом опирается на прямоугольную структуру матрицы.
+
+\subsection*{Обозначения}
+Если необходимо дать развёрнутое представление матрицы в виде таблицы, то используют запись вида
+
+\begin{equation*}
+    \begin{pmatrix}
+        a_{11} & \cdots & a_{1j} & \cdots & a_{1n} \\
+        \vdots & \ddots & \vdots & \ddots & \vdots \\
+        a_{i1} & \cdots & a_{ij} & \cdots & a_{in} \\
+        \vdots & \ddots & \vdots & \ddots & \vdots \\
+        a_{m1} & \cdots & a_{mj} & \cdots & a_{mn}
+    \end{pmatrix},\quad\left[\begin{array}{ccccc}
+            a_{11} & \cdots & a_{1j} & \cdots & a_{1n} \\
+            \vdots & \ddots & \vdots & \ddots & \vdots \\
+            a_{i1} & \cdots & a_{ij} & \cdots & a_{in} \\
+            \vdots & \ddots & \vdots & \ddots & \vdots \\
+            a_{m1} & \cdots & a_{mj} & \cdots & a_{mn}
+        \end{array}\right],\quad\left\|\begin{array}{ccccc}
+        a_{11} & \cdots & a_{1j} & \cdots & a_{1n} \\
+        \vdots & \ddots & \vdots & \ddots & \vdots \\
+        a_{i1} & \cdots & a_{ij} & \cdots & a_{in} \\
+        \vdots & \ddots & \vdots & \ddots & \vdots \\
+        a_{m1} & \cdots & a_{mj} & \cdots & a_{mn}
+    \end{array}\right\|
+\end{equation*}
+
+Можно встретить как обозначения с круглыми скобками <<(...)>>, так и обозначения с квадратными скобками <<[...]>>. Реже можно встретить обозначения с двойными прямыми линиями <<||...||>>).
+
+\clearpage
+
 \nocite{*}
 
 \printbibliography
