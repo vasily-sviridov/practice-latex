@@ -15,6 +15,14 @@ For windows:
 For Debian:
 `sudo apt-get install texlive-full`
 
+### Building
+
+to build a project, you can use ready-made make-scripts:
+
+For build project:
+
+`make build`
+
 ## Contributing
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code
 of conduct, and the process for submitting pull requests to us.
